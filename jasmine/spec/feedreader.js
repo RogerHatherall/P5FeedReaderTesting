@@ -34,7 +34,6 @@ $(function() {
     
         it('has links', function() {
             for (let i = 0; i < allFeeds.length; i++) {
-                console.log("url = " + allFeeds[i].url);
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
             };
@@ -44,8 +43,15 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-    });
+    
 
+        it('has names', function() {
+            for (let i = 0; i < allFeeds.length; i++) {
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name.length).not.toBe(0);
+            };
+        });
+    });
 
     /* TODO: Write a new test suite named "The menu" */
 
