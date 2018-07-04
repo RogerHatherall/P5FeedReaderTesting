@@ -64,9 +64,10 @@ $(function() {
         
         //When the hamburger button is clicked the menu-hidden class is toggled.
         //The class will be in the body tag when the menu is hidden.
-        const $menuHidden = $('body').hasClass('menu-hidden');
+        let $menuHidden = $('body').hasClass('menu-hidden');
+        const $menuIconLink = $('.menu-icon-link');
 
-        it('is hidden', function() {
+        it('is hidden when page loads', function() {
             expect($menuHidden).toBeTruthy();
         });
 
@@ -75,6 +76,22 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        
+        it('is displayed when the hamburger button is clicked',function(){
+            /* simulate a click */
+            $menuIconLink.trigger("click");
+            /* Check body tag for class 'menu-hidden */
+            $menuHidden = $('body').hasClass('menu-hidden');
+            expect($menuHidden).not.toBeTruthy();
+         });
+      
+        it('is hidden when the hamburger button is clicked again ',function(){
+        /* simulate another click */
+            $menuIconLink.trigger("click");
+            /* Check body tag for class 'menu-hidden */
+            $menuHidden = $('body').hasClass('menu-hidden');
+            expect($menuHidden).toBeTruthy();
+         });  
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
