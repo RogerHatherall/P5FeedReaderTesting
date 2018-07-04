@@ -117,9 +117,33 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+        let oldFeed,
+            newFeed;
+        
+        /*Store the first feed in the array */
+        loadFeed(0, () => {
+            oldFeed = document.querySelector('.feed').innerHTML;
+        });
+
+        /*Wait for a new feed to be loaded */
+        beforeEach((done) => {
+            loadFeed(1, () => {
+                newFeed = document.querySelector('.feed').innerHTML;
+                done();
+            });
+        });
+
+        /* Check the new one against the first one*/
+        it('changes the content', (done) => {
+            expect(newFeed).not.toBe(oldFeed);
+            done();
+        });
+    });
 }());
