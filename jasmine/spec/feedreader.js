@@ -127,16 +127,16 @@ $(function() {
         let oldFeed,
             newFeed;
         
-        /*Store the first feed in the array */
-        loadFeed(0, () => {
-            oldFeed = document.querySelector('.feed').innerHTML;
-        });
-
-        /*Wait for a new feed to be loaded */
+        /* This attempts to chain the loadFeed calls so that the first feed is loaded before the second. */
         beforeEach((done) => {
-            loadFeed(1, () => {
-                newFeed = document.querySelector('.feed').innerHTML;
-                done();
+            loadFeed(0, () => {
+                /*Store the first feed of the array */
+                oldFeed = document.querySelector('.feed').innerHTML;
+                loadFeed(1, () => {
+                    /*Store the second feed of the array */
+                    newFeed = document.querySelector('.feed').innerHTML;
+                    done();
+                });
             });
         });
 
